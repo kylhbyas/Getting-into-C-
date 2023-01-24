@@ -1,8 +1,11 @@
 # Getting-into-C-
 
 Name: Kyle Byassee
+
 Date: 2023-01-24
+
 This is a world with animals...
+
 
 # Program usage
 How do we run your program?
@@ -19,4 +22,5 @@ How do we run your program?
 * What design decisions did you make?
   * The base class is abstract with abstract methods that gets overridden by the derived classes
   * An interface keyword could have been used I believe but I did not know how to do that
+  
 :tada:
