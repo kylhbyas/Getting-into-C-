@@ -19,6 +19,7 @@ How do we run your program?
   * The program is believed to be working as intended.
 * What are the limitations of the program?
   * Limited by my imagination
+  * The helper methods should have been called helpName() instead of whatName()
 * What design decisions did you make?
   * The base class is abstract with abstract methods that gets overridden by the derived classes
   * An interface keyword could have been used I believe but I did not know how to do that
