@@ -16,6 +16,13 @@ namespace ConsoleApp2
 {
     class Program
     {
+        /*
+         * Declared as abstract so it can be overridden
+         * 
+         * Since private fields cannot be accessed by derived 
+         *  classes the public helper fuctions were neccessary.
+         *  
+         */
         abstract class Animal
         {
             private string Name;
@@ -67,12 +74,15 @@ namespace ConsoleApp2
                     Weight = value;
                 }
             }
-
             public abstract void PrintInfo();
             public abstract void MakeNoise();
             public abstract void AgeUp();
         }
 
+        /*
+         * Cat inherits from Animal and overrides its abstract methods.
+         * 
+         */
         class Cat : Animal
         {
             public Cat (string petName, int petAge, string petNoise, int petWeight)
@@ -100,6 +110,10 @@ namespace ConsoleApp2
             }
         }
 
+        /*
+         * Inherits from Animal and overrides its abstract methods.
+         * 
+         */
         class Cassowary : Animal
         {
             public Cassowary (string petName, int petAge, string petNoise, int petWeight)
@@ -127,9 +141,47 @@ namespace ConsoleApp2
             }
         }
 
+        /*
+         * Inherits from animal and overrides its abstract methods.
+         * 
+         */
+        class Fox : Animal
+        {
+            public Fox (string petName, int petAge, string petNoise, int petWeight)
+            {
+                whatName = petName;
+                whatAge = petAge;
+                whatNoise = petNoise;
+                whatWeight = petWeight;
+            }
+            public override void PrintInfo()
+            {
+                Console.WriteLine("Name: " + whatName);
+                Console.WriteLine("Species: Fox");
+                Console.WriteLine("Age: " + whatAge);
+                Console.WriteLine("Noise: " + whatNoise);
+                Console.WriteLine("Weight: " + whatWeight);
+            }
+            public override void MakeNoise()
+            {
+                Console.WriteLine("Usually " + whatNoise + " but sometimes... Ring-ding-ding-ding-dingeringeding!");
+            }
+            public override void AgeUp()
+            {
+                whatAge++;
+            }
+        }
+
+        /*
+         * Main is in here and everthing else as well
+         * 
+         */
         class World
         {
-            
+            /*
+             * Menu defined here for readability
+             * 
+             */
             public static void Menu()
             {
                 Console.WriteLine(" 1 - Add animal");
@@ -139,6 +191,10 @@ namespace ConsoleApp2
                 Console.WriteLine(" 9 - Exit");
             }
 
+            /*
+             * Records an animal's stats and adds that animal to the list
+             * 
+             */
             public static void Builder(List<Animal> Zoo)
             {
                 Console.WriteLine("What species?");
@@ -171,8 +227,18 @@ namespace ConsoleApp2
                     Cassowary cassowary = new Cassowary(petName, petAge, petNoise, petWeight);
                     Zoo.Add(cassowary);
                 }
-            }
 
+                if (species == "fox")
+                {
+                    Fox fox = new Fox(petName, petAge, petNoise, petWeight);
+                    Zoo.Add(fox);
+                }
+            }
+            /*
+             * Iterates through the list and returns the selected index
+             *  , defined here for readability
+             * 
+             */
             public static int Which(List<Animal> Zoo)
             {
                 Console.WriteLine("Which animal?");
@@ -198,30 +264,30 @@ namespace ConsoleApp2
 
                 while (choice != 9)
                 {
-                    if(choice == 1)
+                    if (choice == 1)
                     {
                         Builder(Zoo);
                         Console.WriteLine("Done!");
                     }
                     if (choice == 2)
                     {
-                        int temp2 = Which(Zoo);
+                        int index2 = Which(Zoo);
 
-                        Zoo[temp2].PrintInfo();
+                        Zoo[index2].PrintInfo();
                     }
                     if (choice == 3)
                     {
-                        int temp3 = Which(Zoo);
+                        int index3 = Which(Zoo);
 
-                        Console.WriteLine("\"" + Zoo[temp3].whatNoise + "\"");
+                        Console.WriteLine("\"" + Zoo[index3].whatNoise + "\"");
                     }
                     if (choice == 4)
                     {
-                        int temp4 = Which(Zoo);
-                        Zoo[temp4].AgeUp();
+                        int index4 = Which(Zoo);
+                        Zoo[index4].AgeUp();
 
                         Console.WriteLine("One year has passed...");
-                        Console.WriteLine(Zoo[temp4].whatName + " is now " + Zoo[temp4].whatAge + " years old");
+                        Console.WriteLine(Zoo[index4].whatName + " is now " + Zoo[index4].whatAge + " years old");
                     }
 
                     Console.WriteLine("");
